@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>همسایه‌های زعفرانیه بیرجند | محاسبه مبالغ پرداختی با نرخ طلا</title>
+    <meta name="description" content="محاسبه مبالغ پرداختی خانه‌های خریداری شده از دولت بر اساس نرخ روز طلا">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #C9A961;
+            --primary-dark: #A0894F;
+            --primary-light: #E5D4A8;
+            --accent: #8B6F47;
+            --secondary: #6B5B3D;
+            --background: #FDFCF9;
+            --surface: #FFFFFF;
+            --text: #2C2416;
+            --text-light: #6B5B3D;
+            --text-muted: #8B7355;
+            --border: #E8E0D0;
+            --gold-light: #F5F0E6;
+            --gold-accent: #D4AF37;
+            --warning: #D97706;
+            --shadow: 0 4px 20px rgba(44, 36, 22, 0.08);
+            --shadow-lg: 0 8px 40px rgba(44, 36, 22, 0.12);
+            --shadow-xl: 0 12px 60px rgba(44, 36, 22, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--background);
+            color: var(--text);
+            line-height: 1.8;
+            direction: rtl;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            position: relative;
+            background-image: url('https://img9.irna.ir/d/r2/2025/02/27/4/171713064.jpg?ts=1740631796622');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.65);
+            z-index: 1;
+        }
+
+        header .container {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        header h1 {
+            font-size: 2.25rem;
+            font-weight: 800;
+            text-align: center;
+            color: var(--text);
+            line-height: 1.4;
+            padding: 2rem 1rem;
+            text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 3rem 0 4rem;
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--gold-light) 100%);
+        }
+
+        .hero-card {
+            background: linear-gradient(135deg, #FFFFFF 0%, var(--gold-light) 100%);
+            border-radius: 24px;
+            padding: 3rem 2.5rem;
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+            border: 3px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--gold-accent) 50%, var(--primary) 100%);
+        }
+
+        .hero-label {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-amount {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--gold-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 1.5rem 0;
+            direction: ltr;
+            text-align: center;
+            font-variant-numeric: tabular-nums;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-light);
+            margin-top: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-warning {
+            background: linear-gradient(135deg, #FFF4E6 0%, #FFE9CC 100%);
+            border: 2px solid var(--warning);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: right;
+        }
+
+        .hero-warning-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--warning);
+            margin-bottom: 1rem;
+        }
+
+        .hero-warning-text {
+            font-size: 1.1rem;
+            color: var(--text);
+            line-height: 1.9;
+            font-weight: 500;
+        }
+
+        .hero-gold-info {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-top: 2rem;
+            padding: 1rem 2rem;
+            background: var(--primary-light);
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            border: 2px solid var(--primary);
+        }
+
+        .loading-spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid var(--primary);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Content Sections */
+        section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            color: var(--text);
+        }
+
+        .card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        /* Payment Table */
+        .table-wrapper {
+            overflow-x: auto;
+            margin: 2rem 0;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            font-size: 0.95rem;
+            background: white;
+        }
+
+        table thead {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+        }
+
+        table th {
+            padding: 1.25rem 1rem;
+            text-align: right;
+            font-weight: 700;
+            white-space: nowrap;
+            font-size: 1rem;
+        }
+
+        table td {
+            padding: 1.25rem 1rem;
+            border-bottom: 1px solid var(--border);
+            text-align: right;
+        }
+
+        table tbody tr {
+            transition: all 0.2s ease;
+        }
+
+        table tbody tr:hover {
+            background: var(--gold-light);
+            transform: scale(1.01);
+        }
+
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .amount-cell {
+            direction: ltr;
+            text-align: left;
+            font-weight: 600;
+            font-variant-numeric: tabular-nums;
+            color: var(--text);
+        }
+
+        .gold-grams {
+            color: var(--primary-dark);
+            font-weight: 700;
+            direction: ltr;
+            text-align: left;
+            font-size: 1.05rem;
+        }
+
+        /* Summary Card */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            margin: 2.5rem 0;
+        }
+
+        .summary-item {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-lg);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .summary-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .summary-label {
+            font-size: 1rem;
+            opacity: 0.95;
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .summary-value {
+            font-size: 2rem;
+            font-weight: 800;
+            direction: ltr;
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* Description Section */
+        .description-section {
+            background: var(--gold-light);
+            padding: 4rem 0;
+            margin-top: 3rem;
+        }
+
+        .description-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            font-size: 1.15rem;
+            line-height: 2;
+            color: var(--text);
+        }
+
+        .description-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        /* Advertising Section */
+        .advertising-section {
+            background: linear-gradient(135deg, #3A3428 0%, #2C2416 100%);
+            color: white;
+            padding: 4rem 0;
+            margin-top: 4rem;
+        }
+
+        .advertising-content {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .advertising-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .advertising-content p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .ad-placeholder {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 16px;
+            padding: 3rem;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            opacity: 0.7;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text);
+            color: white;
+            text-align: center;
+            padding: 2.5rem 0;
+            margin-top: 4rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes countUp {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .count-up {
+            animation: countUp 1.2s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                min-height: 250px;
+            }
+
+            header h1 {
+                font-size: 1.5rem;
+                padding: 1.5rem 1rem;
+            }
+
+            .hero-amount {
+                font-size: 2.75rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            table {
+                font-size: 0.85rem;
+            }
+
+            table th,
+            table td {
+                padding: 1rem 0.75rem;
+            }
+
+            .card {
+                padding: 1.75rem;
+            }
+
+            .hero-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .hero-warning {
+                padding: 1.5rem;
+            }
+
+            .hero-warning-title {
+                font-size: 1.15rem;
+            }
+
+            .hero-warning-text {
+                font-size: 1rem;
+            }
+
+            .summary-value {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Loading State */
+        .loading {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>همسایه عزیز اگر به جای پرداخت به مسکن راه و شهرسازی طلا خریده بودی الان چقدر پول داشتی؟</h1>
+        </div>
+    </header>
+
+    <section class="hero-section">
+        <div class="container">
+
+            <div class="hero-card fade-in-up">
+                <div class="hero-label">ارزش فعلی مبالغ پرداختی با نرخ امروز طلا:</div>
+                <div class="hero-amount count-up" id="total-amount">-</div>
+                <div class="hero-subtitle" id="total-subtitle">در حال محاسبه...</div>
+                <div class="hero-gold-info" id="gold-price-info">
+                    <span class="loading-spinner"></span>
+                    <span>در حال دریافت نرخ طلا...</span>
+                </div>
+                <button id="refresh-price-btn" style="display: none; margin-top: 1.5rem; padding: 0.875rem 2.5rem; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; border-radius: 12px; cursor: pointer; font-weight: 600; font-family: inherit; font-size: 1rem; box-shadow: var(--shadow); transition: transform 0.2s ease;">
+                    🔄 به‌روزرسانی نرخ طلا
+                </button>
+
+                <div class="hero-warning" id="warning-message" style="display: none;">
+                    <div class="hero-warning-title">⚠️ توجه مهم:</div>
+                    <div class="hero-warning-text">
+                        تازه این مبلغ بدون محاسبه وام بوده که حدودا ۲ میلیارد باید برگردونی. این یک تلنگری به مسئولین محترم بیرجند هست که ما را زیاده‌خواه می‌نامند.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <h2 class="section-title">جزییات پرداخت‌ها</h2>
+            
+            <div class="card">
+                <h3 style="margin-bottom: 2rem; color: var(--primary-dark); font-size: 1.5rem; font-weight: 700;">جدول پرداخت‌های انجام شده</h3>
+                <div class="table-wrapper">
+                    <table id="payments-table">
+                        <thead>
+                            <tr>
+                                <th>تاریخ واریز</th>
+                                <th>مبلغ (ریال)</th>
+                                <th>نرخ طلا (ریال/گرم)</th>
+                                <th>معادل طلا (گرم)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="payments-tbody">
+                            <!-- Will be populated by JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="summary-grid" id="summary-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section class="description-section">
+        <div class="container">
+            <div class="description-content">
+                <p>
+                    این صفحه برای محاسبه و نمایش مبالغ پرداختی همسایه‌های محترم زعفرانیه بیرجند طراحی شده است. 
+                    مبالغ پرداختی شما بر اساس نرخ طلای ۱۸ عیار در هر تاریخ محاسبه شده و سپس ارزش فعلی آن‌ها 
+                    با نرخ امروز طلا نمایش داده می‌شود.
+                </p>
+                <p>
+                    این محاسبات نشان می‌دهد که اگر به جای پرداخت به مسکن راه و شهرسازی، همان مبالغ را در همان 
+                    تاریخ‌ها به خرید طلا اختصاص می‌دادید، امروز چه مقدار سرمایه در اختیار داشتید.
+                </p>
+                <p style="font-weight: 600; color: var(--primary-dark);">
+                    یادآوری: این محاسبات بدون در نظر گیری وام‌های دریافتی است و حدود ۲ میلیارد تومان بدهی وام 
+                    نیز باید به این مبالغ اضافه شود.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="advertising-section">
+        <div class="container">
+            <div class="advertising-content">
+                <h2>فضای تبلیغات</h2>
+                <p>این بخش برای نمایش تبلیغات و اطلاع‌رسانی در نظر گرفته شده است</p>
+                <div class="ad-placeholder">
+                    فضای تبلیغات
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; ۱۴۰۳ همسایه‌های زعفرانیه بیرجند - تمام حقوق محفوظ است</p>
+        </div>
+    </footer>
+
+    <script>
+        // Payment data
+        const payments = [
+            { date: 'مهر 1401', amount: 800000000, goldRate: 13113000 },
+            { date: 'دی 1401', amount: 500000000, goldRate: 18642000 },
+            { date: 'اسفند 1401', amount: 500000000, goldRate: 24855000 },
+            { date: 'اردیبهشت 1402', amount: 600000000, goldRate: 27263000 },
+            { date: 'مرداد 1402', amount: 500000000, goldRate: 23502000 },
+            { date: 'آبان 1402', amount: 600000000, goldRate: 23500000 },
+            { date: 'بهمن 1402', amount: 600000000, goldRate: 23500000 },
+            { date: 'اردیبهشت 1403', amount: 500000000, goldRate: 23500000 },
+            { date: 'مرداد 1403', amount: 500000000, goldRate: 23500000 },
+            { date: 'بهمن 1403', amount: 315496000, goldRate: 56200000 },
+            { date: 'اسفند 1403', amount: 600000000, goldRate: 139395000 },
+            { date: 'اردیبهشت 1404', amount: 600000000, goldRate: 68068000 },
+            { date: 'مرداد 1404', amount: 600000000, goldRate: 78068000 }
+        ];
+
+        // Format number in Rials (keeping English digits for large numbers)
+        function formatRials(num) {
+            return num.toLocaleString('en-US') + ' ریال';
+        }
+
+        // Animate number counting
+        function animateValue(element, start, end, duration, callback) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const current = Math.floor(progress * (end - start) + start);
+                if (callback) callback(current);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Fetch current gold price
+        async function fetchGoldPrice() {
+            const apiUrl = 'https://api.alanchand.com/?type=golds&token=YKLhrPMNDrIWGD14Vqkn';
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    mode: 'cors',
+                    headers: {
+                        'Accept': 'application/json',
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (data['18ayar'] && data['18ayar'].price) {
+                    return { price: data['18ayar'].price, success: true, error: null };
+                }
+                throw new Error('Invalid API response structure');
+            } catch (error) {
+                console.error('Error fetching gold price:', error);
+                
+                // Return fallback price (14349000 ریال)
+                return { 
+                    price: 14349000, 
+                    success: true, 
+                    error: null 
+                };
+            }
+        }
+
+        // Calculate total gold grams
+        function calculateTotalGoldGrams() {
+            return payments.reduce((total, payment) => {
+                const goldGrams = payment.amount / payment.goldRate;
+                return total + goldGrams;
+            }, 0);
+        }
+
+        // Render payments table
+        function renderPaymentsTable() {
+            const tbody = document.getElementById('payments-tbody');
+            tbody.innerHTML = '';
+
+            payments.forEach((payment) => {
+                const goldGrams = payment.amount / payment.goldRate;
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${payment.date}</td>
+                    <td class="amount-cell">${formatRials(payment.amount)}</td>
+                    <td class="amount-cell">${formatRials(payment.goldRate)}</td>
+                    <td class="gold-grams">≈ ${goldGrams.toFixed(2)} گرم</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Render summary cards
+        function renderSummaryCards(currentGoldPrice, totalGoldGrams, currentValue) {
+            const summaryGrid = document.getElementById('summary-grid');
+            const totalPaid = payments.reduce((sum, p) => sum + p.amount, 0);
+
+            summaryGrid.innerHTML = `
+                <div class="summary-item">
+                    <div class="summary-label">مجموع مبالغ پرداختی</div>
+                    <div class="summary-value">${formatRials(totalPaid)}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">مجموع طلای خریداری شده</div>
+                    <div class="summary-value">${totalGoldGrams.toFixed(2)} گرم</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">نرخ امروز طلا (18 عیار)</div>
+                    <div class="summary-value">${formatRials(currentGoldPrice)}</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">ارزش فعلی با نرخ امروز</div>
+                    <div class="summary-value">${formatRials(currentValue)}</div>
+                </div>
+            `;
+        }
+
+        // Update hero section
+        function updateHeroSection(currentGoldPrice, totalGoldGrams, currentValue) {
+            const totalAmountEl = document.getElementById('total-amount');
+            const totalSubtitleEl = document.getElementById('total-subtitle');
+            const goldPriceInfoEl = document.getElementById('gold-price-info');
+            const refreshBtn = document.getElementById('refresh-price-btn');
+            const warningMessageEl = document.getElementById('warning-message');
+
+            // Show warning message
+            if (warningMessageEl) {
+                warningMessageEl.style.display = 'block';
+            }
+
+            // Animate the total amount
+            animateValue(totalAmountEl, 0, currentValue, 2000, (value) => {
+                totalAmountEl.textContent = formatRials(value);
+            });
+
+            totalSubtitleEl.textContent = `بر اساس ${totalGoldGrams.toFixed(2)} گرم طلای خریداری شده`;
+            
+            goldPriceInfoEl.innerHTML = `
+                <span>💎</span>
+                <span>نرخ امروز: ${formatRials(currentGoldPrice)} به ازای هر گرم</span>
+            `;
+            goldPriceInfoEl.style.background = '';
+            goldPriceInfoEl.style.color = '';
+            goldPriceInfoEl.style.borderColor = '';
+            if (refreshBtn) refreshBtn.style.display = 'none';
+        }
+
+        // Load and display gold price data
+        async function loadGoldPriceData() {
+            const goldPriceInfoEl = document.getElementById('gold-price-info');
+            const refreshBtn = document.getElementById('refresh-price-btn');
+            
+            // Show loading state
+            goldPriceInfoEl.innerHTML = '<span class="loading-spinner"></span><span>در حال دریافت نرخ طلا...</span>';
+            if (refreshBtn) refreshBtn.style.display = 'none';
+
+            // Fetch current gold price
+            const goldPriceResult = await fetchGoldPrice();
+            
+            if (!goldPriceResult || !goldPriceResult.price) {
+                document.getElementById('total-amount').textContent = 'خطا در دریافت نرخ طلا';
+                document.getElementById('total-subtitle').textContent = 'لطفا صفحه را رفرش کنید';
+                goldPriceInfoEl.innerHTML = '<span>❌ خطا در دریافت اطلاعات</span>';
+                if (refreshBtn) refreshBtn.style.display = 'inline-block';
+                return;
+            }
+
+            const currentGoldPrice = goldPriceResult.price;
+            
+            // Calculate totals
+            const totalGoldGrams = calculateTotalGoldGrams();
+            const currentValue = Math.round(totalGoldGrams * currentGoldPrice);
+
+            // Update UI
+            updateHeroSection(currentGoldPrice, totalGoldGrams, currentValue);
+            renderSummaryCards(currentGoldPrice, totalGoldGrams, currentValue);
+        }
+
+        // Main initialization
+        async function init() {
+            // Render payments table first
+            renderPaymentsTable();
+
+            // Load gold price data
+            await loadGoldPriceData();
+
+            // Add refresh button handler
+            const refreshBtn = document.getElementById('refresh-price-btn');
+            if (refreshBtn) {
+                refreshBtn.addEventListener('click', async () => {
+                    refreshBtn.disabled = true;
+                    refreshBtn.textContent = '⏳ در حال به‌روزرسانی...';
+                    await loadGoldPriceData();
+                    refreshBtn.disabled = false;
+                    refreshBtn.innerHTML = '🔄 به‌روزرسانی نرخ طلا';
+                });
+                
+                refreshBtn.addEventListener('mouseenter', () => {
+                    refreshBtn.style.transform = 'scale(1.05)';
+                });
+                refreshBtn.addEventListener('mouseleave', () => {
+                    refreshBtn.style.transform = 'scale(1)';
+                });
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
